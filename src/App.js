@@ -1,19 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import Navbar from './components/Navbar'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {FaHome} from "react-icons/fa"
+import ProductList from './components/ProductList';
+import Cart from './pages/Cart';
+import Details from './pages/Details';
+import Error from './pages/Error';
+import { Switch, Route} from "react-router-dom"
 
 function App() {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-6">Coloumn number 1</div>
-        <div className="col-6"><FaHome /></div>
-
-      </div>
+    <React.Fragment>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={ProductList} />
+        <Route exact path="/details" component={Details} />
+        <Route exact path="/cart" component={Cart} />
+        <Route component={Error} />
+        
+      </Switch>
       
-    </div>
+      
+    </React.Fragment>
   );
 }
 
