@@ -1,10 +1,9 @@
-import React, { createContext ,useState,useEffect ,useRef} from 'react'
+import React, { createContext ,useState,useEffect ,} from 'react'
 import {storeProducts,detailProduct} from './data'
 import Product from './components/Product'
 export const ProductContext= createContext()
 
 export default function ProductProvider(props) {
-    const inputRef = useRef()
    const [products,setProducts]=useState([])
    const[productdetail,setProductdetail]=useState(detailProduct)
  
@@ -19,7 +18,7 @@ export default function ProductProvider(props) {
    useEffect(()=>{
        seproducts()
        console.log("useEffect ran")
-   },[inputRef])
+   },[])
    const handleDetail =()=>{
     console.log("hello form detail")
 }
