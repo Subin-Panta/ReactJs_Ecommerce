@@ -4,11 +4,11 @@ import Title from './Title'
 import {ProductContext} from '../Context'
 export default function ProductList() {
    const {products,productdetail,addToCart,handleDetail}=useContext(ProductContext)
-   addToCart()
-   handleDetail() 
+//    addToCart()
+//    handleDetail() 
    return (
         <React.Fragment>
-            {console.log(products)}{console.log(productdetail)}
+            
             
             <div className="py-5">
                 <div className="container">
