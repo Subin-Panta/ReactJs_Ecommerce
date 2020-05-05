@@ -5,8 +5,8 @@ export const ProductContext= createContext()
 
 export default function ProductProvider(props) {
    const [products,setProducts]=useState([])
-   const[productdetail,setProductdetail]=useState(detailProduct)
- 
+   const[productDetail,setProductdetail]=useState(detailProduct)
+    const [cart,setCart] =useState([])
     const seproducts =() => {
        let products =[]
        storeProducts.forEach(item => {
@@ -19,14 +19,36 @@ export default function ProductProvider(props) {
        seproducts()
        console.log("useEffect ran")
    },[])
-   const handleDetail =()=>{
-    console.log("hello form detail")
+
+   const getItem =(id) =>  {
+       const product=products.find(item=> item.id===id)
+        return product
+    }
+
+   const handleDetail =(id)=>{
+   const product = getItem(id)
+   setProductdetail(product)
 }
-const addToCart =()=>{
- console.log("hello form addtocart")
+const addToCart =(id)=>{
+  let tempProducts = [...products]
+  const index =tempProducts.indexOf(getItem(id))
+  const product =tempProducts[index]
+  product.inCart=true
+  product.count=1
+  const price =product.price
+  product.total=price;
+  setProducts(tempProducts)
+  setCart([product,...cart])
+  
+  
+  
+  
+ 
+ 
+
 }
     return (
-        <ProductContext.Provider value={{products,productdetail,handleDetail,addToCart}}>
+        <ProductContext.Provider value={{products,productDetail,handleDetail,addToCart}}>
           {props.children}
         </ProductContext.Provider>
     )
