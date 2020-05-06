@@ -7,6 +7,11 @@ export default function ProductProvider(props) {
    const [products,setProducts]=useState([])
    const[productDetail,setProductdetail]=useState(detailProduct)
     const [cart,setCart] =useState([])
+    const [modalOpen,setModalopen]=useState(false)
+    const [modalProduct,setModalproduct]=useState(productDetail)
+    const [cartSubTotal,setCartsubtotal]=useState(0)
+    const [cartTax,setCarttax]=useState(0)
+    const[cartTotal,setCartTotal]=useState(0)
     const seproducts =() => {
        let products =[]
        storeProducts.forEach(item => {
@@ -39,16 +44,46 @@ const addToCart =(id)=>{
   product.total=price;
   setProducts(tempProducts)
   setCart([product,...cart])
-  
-  
-  
-  
- 
- 
-
+}
+const openModal= id => {
+    const product = getItem(id)
+    setModalopen(true)
+    setModalproduct(product)
+    }
+const closeModal =() =>{
+    setModalopen(false)
+}
+const increment =(id) =>{
+    console.log("increment")
+}
+const decrement =(id)=>{
+    console.log("decrement")
+}
+const clearCart =()=>{
+    console.log("clearcart")
+}
+const removeItem =(id)=>{
+    console.log("remove Item")
 }
     return (
-        <ProductContext.Provider value={{products,productDetail,handleDetail,addToCart}}>
+        <ProductContext.Provider value={{
+            products,
+            productDetail,
+            handleDetail,
+            addToCart,
+            openModal,
+            closeModal,
+            modalProduct,
+            modalOpen,
+            cart,
+            cartSubTotal,
+            cartTax,
+            cartTotal,
+            increment,
+            decrement,
+            clearCart,
+            removeItem
+            }}>
           {props.children}
         </ProductContext.Provider>
     )

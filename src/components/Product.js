@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import {ProductContext} from "../Context"
 export default function Product({product}) {
     const {id, title,img,price,inCart}=product
-    const {handleDetail,addToCart}=useContext(ProductContext)
+    const {handleDetail,addToCart,openModal,closeModal}=useContext(ProductContext)
     return (
         <ProductWrapper className = "col-9 mx-auto col-md-6 col-lg-3 my-3">
             <div className="card">
@@ -16,6 +16,7 @@ export default function Product({product}) {
                     </Link>
                     <button className="cart-btn" disabled={inCart} onClick={()=>{
                         addToCart(id)
+                        openModal(id)
                     }}>
                     {inCart? (<p className="text-capitalize mb-0" disabled> in Cart</p>):(<FaCartPlus/>)}
 

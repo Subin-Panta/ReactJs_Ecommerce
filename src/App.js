@@ -2,13 +2,12 @@ import React from 'react';
 import Navbar from './components/Navbar'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {FaHome} from "react-icons/fa"
 import ProductList from './components/ProductList';
-import Cart from './pages/Cart';
+import Cart from './pages/CartComponents/Cart';
 import Details from './pages/Details';
 import Error from './pages/Error';
 import { Switch, Route} from "react-router-dom"
-
+import Modal from "./components/Modal"
 function App() {
   return (
     <React.Fragment>
@@ -20,7 +19,7 @@ function App() {
         <Route component={Error} />
         
       </Switch>
-      
+      <Modal />
       
     </React.Fragment>
   );
