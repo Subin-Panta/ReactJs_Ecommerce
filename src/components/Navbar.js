@@ -15,7 +15,7 @@ export default function Navbar() {
             </Link>
             <ul className="navbar-nav align-items-center">
                 <li className="nav-item ml-5">
-                    <Link to="/p" className="nav-link">products</Link></li>
+                    <Link to="/" className="nav-link">products</Link></li>
             </ul>
             <Link to ="/cart" className="ml-auto">
                 <ButtonContainer>

@@ -57,16 +57,46 @@ const closeModal =() =>{
     setModalopen(false)
 }
 const increment =(id) =>{
-    console.log("increment")
+    let tempCart=[...cart]
+    const selectedProducts=tempCart.find(item=>item.id===id)
+    const index= tempCart.indexOf(selectedProducts)
+    const product=tempCart[index]
+    product.count+=1
+    product.total=product.count*product.price
+    setCart(tempCart)
 }
 const decrement =(id)=>{
-    console.log("decrement")
+    
+    let tempCart=[...cart]
+    const selectedProducts=tempCart.find(item=>item.id===id)
+    const index= tempCart.indexOf(selectedProducts)
+    const product=tempCart[index]
+    if(product.count ===1) {
+            removeItem(id)
+    }
+    else{
+        product.count-=1
+        product.total=product.count*product.price
+        setCart(tempCart)
+    }
 }
 const clearCart =()=>{
-    console.log("clearcart")
+    seproducts()
+    setCart([])
+    
+    // addTotals()
 }
 const removeItem =(id)=>{
-    console.log("remove Item")
+    let tempProducts=[...products]
+    let tempCart=[...cart]
+    tempCart=tempCart.filter(item => item.id!=id)
+    setCart(tempCart)
+    const index=tempProducts.indexOf(getItem(id))
+    let removedProduct = tempProducts[index]
+    removedProduct.inCart=false
+    removedProduct.count=0
+    removedProduct.total=0
+    setProducts(tempProducts)
 }
 const addTotals=()=>{
     let subTotal = 0
