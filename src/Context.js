@@ -1,4 +1,4 @@
-import React, { createContext ,useState,useEffect ,} from 'react'
+import React, { createContext ,useState,useEffect } from 'react'
 import {storeProducts,detailProduct} from './data'
 import Product from './components/Product'
 export const ProductContext= createContext()
@@ -45,6 +45,9 @@ const addToCart =(id)=>{
   setProducts(tempProducts)
   setCart([product,...cart])
 }
+useEffect(()=>{
+    addTotals()
+},[cart])
 const openModal= id => {
     const product = getItem(id)
     setModalopen(true)
@@ -65,6 +68,16 @@ const clearCart =()=>{
 const removeItem =(id)=>{
     console.log("remove Item")
 }
+const addTotals=()=>{
+    let subTotal = 0
+    cart.map(item=> subTotal+=item.total)
+    const tempTax=subTotal*0.1
+    const tax = parseFloat(tempTax.toFixed(2))
+    const total=subTotal+tax
+    setCartsubtotal(subTotal)
+    setCarttax(tax)
+    setCartTotal(total)
+}
     return (
         <ProductContext.Provider value={{
             products,
@@ -82,7 +95,8 @@ const removeItem =(id)=>{
             increment,
             decrement,
             clearCart,
-            removeItem
+            removeItem,
+            addTotals
             }}>
           {props.children}
         </ProductContext.Provider>
