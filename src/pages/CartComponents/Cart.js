@@ -5,7 +5,7 @@ import CartColoumns from "./CartColoumns.js"
 import EmptyCart from "./EmptyCart.js"
 import CartList from './CartList'
 import CartTotals from './CartTotals.js'
-export default function Cart() {
+export default function Cart(props) {
     const value=useContext(ProductContext)
     const {cart}=value
     if(cart.length>0){
@@ -14,7 +14,7 @@ export default function Cart() {
             <Title name="your" title="cart" />
             <CartColoumns />
             <CartList />
-            <CartTotals />
+            <CartTotals history={props.history}/>
             </section>
        )
     }

@@ -32,6 +32,9 @@ export default function CartTotals() {
                                     <strong>Rs {cartTotal}</strong></span>    
                             </span>
                         </h5>
+                       
+
+                       
                     </div>
                 </div>
             </div>
